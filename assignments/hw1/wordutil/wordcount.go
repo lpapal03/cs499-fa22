@@ -11,6 +11,20 @@ import (
 // Matching is case insensitive, e.g. "Orange" and "orange" is considered the
 // same word.
 func WordCount(s string) map[string]int {
-	// TODO: implement me
-	// HINT: You may find the `strings.Fields` and `strings.ToLower` functions helpful
+
+	m := make(map[string]int)
+
+	words := strings.Fields(s)
+
+	for _, word := range words {
+		word = strings.ToLower(word)
+		_, exists := m[word]
+		if exists {
+			m[word]++
+		} else {
+			m[word] = 1
+		}
+	}
+
+	return m
 }

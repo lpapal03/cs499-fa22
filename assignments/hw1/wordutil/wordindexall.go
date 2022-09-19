@@ -12,6 +12,22 @@ import (
 // Matching is case insensitive, e.g. "Orange" and "orange" is considered the
 // same word.
 func WordIndexAll(s string) map[string][]int {
-	// TODO: implement me
-	// HINT: You may find the `strings.Index` and `strings.ToLower` functions helpful
+
+	m := make(map[string][]int)
+	var starting_indices []int
+	words := strings.Fields(s)
+
+	starting_indices = append(starting_indices, 0)
+	for pos, char := range s {
+		if char == ' ' {
+			starting_indices = append(starting_indices, pos+1)
+		}
+	}
+
+	for i, word := range words {
+		word = strings.ToLower(word)
+		m[word] = append(m[word], starting_indices[i])
+	}
+
+	return m
 }
