@@ -1,10 +1,9 @@
 # Homework 1 - Part 2
 
 ## Experiment Results
----
 
 #### Machines:
-node0: c220g2 Wisconsin
+node0: c220g2 Wisconsin<br />
 node1: c220g1 Wisconsin
 
 ### 1. Local memory
