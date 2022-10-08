@@ -41,7 +41,7 @@ ok      /path/to/wordutil   0.009s
 
 ## Part 2: Storage Hierarchy Measurements
 
-In this part you will study the memory and storage hierarchy in the data center. You will measure and report the latency, bandwidth, and capacity characteristics of a cluster of machines of your choice in CloudLab. It is recommended that you use one of the following machine types: `c220g1`, `c240g1`, `c220g2`, `c240g2`, `c220g5`, `c240g5` (from CloudLab Wisconsin). 
+In this part you will study the memory and storage hierarchy in the data center. You will measure and report the latency, bandwidth, and capacity characteristics of a cluster of machines of your choice in CloudLab. 
 
 Present your results in a graph similar to the one we examined in class and comment. You will submit your answers for this assignment as files in the directory `hierarchy`. Add your comments and observations in the text file `README.md` under `hierarchy`. Add your graph as a new pdf or image file. 
 
@@ -74,7 +74,7 @@ To measure latency and bandwidth to the local disk, you can use the following to
     ```
   - Example usage: To measure read bandwidth:
     ```
-    $ fio −−randrepeat=1 −−ioengine=libaio −−direct=1 \ −−gtod reduce=1 −−name=fiotest −−filename=testfio \ −−bs=4k −−iodepth=64 −−size=1G −−readwrite=read
+    $ fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=fiotest --filename=testfio --bs=4k --iodepth=64 --size=1G --readwrite=read
     ```
 
 To find disk drive specification, including disk capacity, you can use the `hdparm` tool.
@@ -113,7 +113,7 @@ To measure network latency and bandwidth between two machines in the cluster, yo
     ```
   - Example usage: To measure bandwidth between `node0` and `node1`, run iperf in server mode on `node0`:
     ```
-    $ iperf −s −i 1 −w 4M−u
+    $ iperf −s −i 1 −w 4M -u
     ```
     and run iperf in client mode on `node1`:
     ```

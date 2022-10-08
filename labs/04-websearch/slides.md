@@ -153,6 +153,33 @@ theme       : jobs
 </div>
 
 ---
+
+# Index Partitioning
+
+![w:800 center](figures/index.png)
+
+How to partition index among index servers
+
+- Document partitioning
+- Term partitioning
+
+---
+
+# Document partitioning
+
+Each index server holds an index for a disjoint set of documents (used by Nutch)
+
+![w:700 center](figures/document-partitioning.png)
+
+---
+
+# Term partitioning
+
+Each index server holds an index for a disjoint set of terms
+
+![w:700 center](figures/term-partitioning.png)
+
+---
 # Processing a query
 
 <div class="columns">
@@ -487,6 +514,6 @@ Shut down the frontend server:
 Shut down the index server and cleanup the partitions:
 
 ```
-./frontend.sh -i hosts-1-index stop
-./frontend.sh -i hosts-1-index clear
+./index.sh -i hosts-1-index stop
+./index.sh -i hosts-1-index clear
 ```

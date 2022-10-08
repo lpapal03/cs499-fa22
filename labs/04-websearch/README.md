@@ -81,7 +81,7 @@ ssh -p 22 alice@ms1019.utah.cloudlab.us
 Clone the git repository and change into the scripts directory. 
 
 ```
-git clone https://github.com/ucy-coast/cs499.git
+git clone https://github.com/ucy-coast/cs499-fa22.git
 cd labs/websearch/scripts
 ```
 
@@ -215,8 +215,8 @@ To shut down the frontend server:
 To shut down the index server and cleanup the partitions:
 
 ```
-./frontend.sh -i hosts-1-index stop
-./frontend.sh -i hosts-1-index clear
+./index.sh -i hosts-1-index stop
+./index.sh -i hosts-1-index clear
 ```
 
 ## Module 2: Web Search Characterization
