@@ -17,7 +17,7 @@ $ wrk -t200 -c500 -d10s --timeout 2s http://node0/
 1 Web Server (node1)<br />
 1 Workload provider (node5)
 
-![Alt text](/images/part1_case0.jpg "Optional title")
+<img src="/images/part1_case0.png" alt="Alt text" title="Optional title">
 
 #### Case 1:
 
