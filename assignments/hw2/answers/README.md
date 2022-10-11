@@ -43,6 +43,21 @@ $ wrk -t200 -c500 -d10s --timeout 2s http://node0/
 
 <img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part1_case3.png" alt="Case 3" title="Case 3">
 
+#### Observations
+
+##### Throughput
+
+As we can see, in case0, the throughput is 26k requests/s but as soon as we introduce a second webserver that jumps top 161k req/s. After that, ew have a stady increasy of around
+20k req/s, going to 173k for case2 and 186k for case3. Probably an expected result since when we haver just one webserver and the requests keep on coming faster than
+the webserver can handle, a sort of request queue gets created and each request takes exponentially more time to be handled. Once the second webserver enters and the workload
+is spread, no queue is formed since the load balancer can route ther message to the most suitable server at the time. Same logic applies to the rest of the webservers
+but now without that queue, the throughput speed is not that significant.
+
+##### Tail Latency
+
+The latency at the 99th percentile seems to again have a dramatic decrease of 500ms from case0 to case1 but then decrease steadily with a rate of 50ms. I would suggest
+that the explanation is the same as for the throughput.
+
 ### 1.2: Load balancing HotelMap web service
 
 ## Part 2: Web Search Characterization
