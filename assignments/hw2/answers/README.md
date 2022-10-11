@@ -17,7 +17,7 @@ $ wrk -t200 -c500 -d10s --timeout 2s http://node0/
 1 Web Server (node1)<br />
 1 Workload provider (node5)
 
-<img src="/images/part1_case0.png" alt="Alt text" title="Optional title">
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part1_case0.png" alt="Alt text" title="Optional title">
 
 #### Case 1:
 
