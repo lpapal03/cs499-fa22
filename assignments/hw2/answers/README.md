@@ -13,20 +13,20 @@ $ wrk -t200 -c500 -d10s --timeout 2s http://node0/
 
 #### Case 1:
 
-1 Load balancer (node0)**
-2 Web Servers (node1, node2)**
+1 Load balancer (node0)<br />
+2 Web Servers (node1, node2)<br />
 1 Workload provider (node6)
 
 #### Case 2:
 
-1 Load balancer (node0)**
-3 Web Servers (node1, node2, node3)**
+1 Load balancer (node0)<br />
+3 Web Servers (node1, node2, node3)<br />
 1 Workload provider (node6)
 
 #### Case 3:
 
-1 Load balancer (node0)**
-5 Web Servers (node1, node2, node3, mode4, node5)**
+1 Load balancer (node0)<br />
+5 Web Servers (node1, node2, node3, mode4, node5)<br />
 1 Workload provider (node6)
 
 ### 1.2: Load balancing HotelMap web service
