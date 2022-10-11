@@ -61,5 +61,3 @@ that the explanation is the same as for the throughput.
 ### 1.2: Load balancing HotelMap web service
 
 ## Part 2: Web Search Characterization
-
-throughput (requests/sec) and tail latency changes with increasing number of web servers (1 to 4
