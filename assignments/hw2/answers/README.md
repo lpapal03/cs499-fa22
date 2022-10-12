@@ -167,10 +167,10 @@ Run with:
 
 ##### Case 1: hosts-2-index
 
-[frontend]
+[frontend]</br>
 node1</br>
 
-[index]
+[index]</br>
 node2</br>
 node3</br>
 
@@ -178,13 +178,15 @@ node3</br>
 
 ##### Case 2: hosts-2-index
 
-[frontend]
+[frontend]</br>
 node1</br>
 
-[index]
+[index]</br>
 node2</br>
 node3</br>
 node4</br>
 node5</br>
+
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_2_case2.png" alt="Latency and throughput" title="Latency and throughput">
 
 ### Observations
