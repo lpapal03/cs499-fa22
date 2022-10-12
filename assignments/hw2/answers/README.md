@@ -153,16 +153,8 @@ Client threads = 128
 
 ### Observations
 
-#### CPU utilization
-
-#### Throughput
-
-#### Tail Latency
-
-Report and comment how the performance (throughput and response latency) scales with the number of client threads. Measure the index server CPU utilization and report how the CPU utilization is correlated with performance.
-
-For a small number of client threads (<8), you should observe that the performance scales well. At that range the throughput should scale nearly linearly and response times should not worsen much. A small degradation in response times is caused by increased contentions of shared resources as the number of active cores increases.
-
-As the number of client threads increases to a larger number (>8 and <128), you should observe that trends change. Throughput should remain constant or increase slightly and response times should continuously increase (get worse) due to increase queuing delay (query simply waiting to be served). Measuring the index server CPU utilization should reveal that CPU utilization is strongly correlated with throughput.
+As we can see, cpu performance scales linearly with the number of client threads. Something we expected. Following the same pattern,
+throuhput is also incrfeasing lineraly and the tail latency is worsening maybe a bit faster than the client threads are getting increased.
+This degradation in response times is caused by increased contentions of shared resources as the number of active cores increases.
 
 ### 2.2: Index Partitioning
