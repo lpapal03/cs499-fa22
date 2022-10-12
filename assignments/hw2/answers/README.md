@@ -5,7 +5,7 @@
 ### 1.1: Load balancing static web site
 
 For this experiment I will use a heavy workload in order to see the load balancer in action.
-Workload will be 200 threads, 500 connections for 10 seconds, using the following comand:
+Workload will be 200 threads, 500 connections for 10 seconds, using the following command:
 
 ```console
 $ wrk -t200 -c500 -d10s --timeout 2s http://node0/
@@ -47,10 +47,10 @@ $ wrk -t200 -c500 -d10s --timeout 2s http://node0/
 
 ##### Throughput
 
-As we can see, in case0, the throughput is 26k requests/s but as soon as we introduce a second webserver that jumps top 161k req/s. After that, ew have a stady increasy of around
-20k req/s, going to 173k for case2 and 186k for case3. Probably an expected result since when we haver just one webserver and the requests keep on coming faster than
+As we can see, in case0, the throughput is 26k requests/s but as soon as we introduce a second webserver that jumps top 161k req/s. After that, ew have a steady increase of around
+20k req/s, going to 173k for case2 and 186k for case3. Probably an expected result since when we have just one webserver and the requests keep on coming faster than
 the webserver can handle, a sort of request queue gets created and each request takes exponentially more time to be handled. Once the second webserver enters and the workload
-is spread, no queue is formed since the load balancer can route ther message to the most suitable server at the time. Same logic applies to the rest of the webservers
+is spread, no queue is formed since the load balancer can route the message to the most suitable server at the time. Same logic applies to the rest of the webservers
 but now without that queue, the throughput speed is not that significant.
 
 ##### Tail Latency
@@ -154,7 +154,7 @@ Client threads = 128
 ### Observations
 
 As we can see, cpu performance scales linearly with the number of client threads. Something we expected. Following the same pattern,
-throuhput is also incrfeasing lineraly and the tail latency is worsening maybe a bit faster than the client threads are getting increased.
+throughput is also increasing linearly and the tail latency is worsening maybe a bit faster than the client threads are getting increased.
 This degradation in response times is caused by increased contentions of shared resources as the number of active cores increases.
 
 ### 2.2: Index Partitioning
