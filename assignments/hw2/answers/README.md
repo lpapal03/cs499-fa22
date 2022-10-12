@@ -102,3 +102,39 @@ This is probably because we are serving static sites with no computations and th
 does not affect performance.
 
 ## Part 2: Web Search Characterization
+
+### 2.1: Single- vs Multi-threaded Client
+
+#### Outline
+
+[frontend]
+node1
+
+[index]
+node2
+
+index_server_threads_count=10
+
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_cores_per_socket.png" alt="Cores per socket" title="Cores per socket">
+
+Command: <br/>
+
+```console
+./client node1 8080 /local/websearch/ISPASS_PAPER_QUERIES_100K 1000 {thread_count} onlyHits.jsp 1 1 /tmp/out 1
+```
+
+Case 1
+Client threads = 1
+
+Case 2
+Client threads = 8
+
+Case 3
+Client threads = 64
+
+Case 4
+Client threads = 128
+
+Report and comment how the performance (throughput and response latency) scales with the number of client threads. Measure the index server CPU utilization and report how the CPU utilization is correlated with performance.
+
+### 2.2: Index Partitioning
