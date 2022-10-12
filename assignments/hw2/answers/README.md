@@ -123,18 +123,38 @@ Command: <br/>
 ./client node1 8080 /local/websearch/ISPASS_PAPER_QUERIES_100K 1000 {thread_count} onlyHits.jsp 1 1 /tmp/out 1
 ```
 
-Case 1
+##### Case 1
+
 Client threads = 1
 
-Case 2
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case1_cpu.png" alt="Cpu util" title="Cpu util">
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case1_latency_throughput.png" alt="Cores per socket" title="Cores per socket">
+
+##### Case 2
+
 Client threads = 8
 
-Case 3
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case2_cpu.png" alt="Cpu util" title="Cpu util">
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case2_latency_throughput.png" alt="Cores per socket" title="Cores per socket">
+
+##### Case 3
+
 Client threads = 64
 
-Case 4
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case3_cpu.png" alt="Cpu util" title="Cpu util">
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case3_latency_throughput.png" alt="Cores per socket" title="Cores per socket">
+
+##### Case 4
+
 Client threads = 128
 
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case4_cpu.png" alt="Cpu util" title="Cpu util">
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case4_latency_throughput.png" alt="Cores per socket" title="Cores per socket">
+
 Report and comment how the performance (throughput and response latency) scales with the number of client threads. Measure the index server CPU utilization and report how the CPU utilization is correlated with performance.
+
+For a small number of client threads (<8), you should observe that the performance scales well. At that range the throughput should scale nearly linearly and response times should not worsen much. A small degradation in response times is caused by increased contentions of shared resources as the number of active cores increases.
+
+As the number of client threads increases to a larger number (>8 and <128), you should observe that trends change. Throughput should remain constant or increase slightly and response times should continuously increase (get worse) due to increase queuing delay (query simply waiting to be served). Measuring the index server CPU utilization should reveal that CPU utilization is strongly correlated with throughput.
 
 ### 2.2: Index Partitioning
