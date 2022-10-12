@@ -4,7 +4,7 @@
 
 ### 1.1: Load balancing static web site
 
-For this experimewnt I will use a heavy workload in order to see the load balancer in action.
+For this experiment I will use a heavy workload in order to see the load balancer in action.
 Workload will be 200 threads, 500 connections for 10 seconds, using the following comand:
 
 ```console
@@ -59,5 +59,46 @@ The latency at the 99th percentile seems to again have a dramatic decrease of 50
 that the explanation is the same as for the throughput.
 
 ### 1.2: Load balancing HotelMap web service
+
+For this experiment I used the setup from the first part of the experiment but replaced the contents of index.html.js
+with the contents of index.html from .../labs/05-hotelapp/hotelapp/internal/frontend/static/index.html
+
+#### Case 0:
+
+1 Load balancer (node0)<br />
+1 Web Server (node1)<br />
+1 Workload provider (node5)
+
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part1_2_case0.png" alt="Case 0" title="Case 0">
+
+#### Case 1:
+
+1 Load balancer (node0)<br />
+2 Web Servers (node1, node2)<br />
+1 Workload provider (node5)
+
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part1_2_case1.png" alt="Case 1" title="Case 1">
+
+#### Case 2:
+
+1 Load balancer (node0)<br />
+3 Web Servers (node1, node2, node3)<br />
+1 Workload provider (node5)
+
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part1_2_case2.png" alt="Case 2" title="Case 2">
+
+#### Case 3:
+
+1 Load balancer (node0)<br />
+4 Web Servers (node1, node2, node3, mode4)<br />
+1 Workload provider (node5)
+
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part1_2_case3.png" alt="Case 3" title="Case 3">
+
+#### Observations
+
+It is safe to say that the observations we made on the first web app are consistent with the hotel map web app.
+This is probably because we are serving static sites with no computations and therefore the content of the site
+does not affect performance.
 
 ## Part 2: Web Search Characterization
