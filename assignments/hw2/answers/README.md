@@ -120,7 +120,7 @@ index_server_threads_count=10
 Command: <br/>
 
 ```console
-./client node1 8080 /local/websearch/ISPASS_PAPER_QUERIES_100K 1000 {thread_count} onlyHits.jsp 1 1 /tmp/out 1
+./client node1 8080 /local/websearch/ISPASS_PAPER_QUERIES_100K 1000 {thread_count} onlyHits.jsp 1 1 /tmp/out 1 > temp.txt
 ```
 
 ##### Case 1
@@ -150,6 +150,14 @@ Client threads = 128
 
 <img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case4_cpu.png" alt="Cpu util" title="Cpu util">
 <img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case4_latency_throughput.png" alt="Cores per socket" title="Cores per socket">
+
+### Observations
+
+#### CPU utilization
+
+#### Throughput
+
+#### Tail Latency
 
 Report and comment how the performance (throughput and response latency) scales with the number of client threads. Measure the index server CPU utilization and report how the CPU utilization is correlated with performance.
 
