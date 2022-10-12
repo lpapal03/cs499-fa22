@@ -168,23 +168,23 @@ Run with:
 ##### Case 1: hosts-2-index
 
 [frontend]
-node1
+node1</br>
 
 [index]
-node2
-node3
+node2</br>
+node3</br>
 
 <img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_2_case1.png" alt="Latency and throughput" title="Latency and throughput">
 
-##### Case 1: hosts-2-index
+##### Case 2: hosts-2-index
 
 [frontend]
-node1
+node1</br>
 
 [index]
-node2
-node3
-node4
-node5
+node2</br>
+node3</br>
+node4</br>
+node5</br>
 
 ### Observations
