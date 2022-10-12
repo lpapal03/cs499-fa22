@@ -190,3 +190,9 @@ node5</br>
 <img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_2_case2.png" alt="Latency and throughput" title="Latency and throughput">
 
 ### Observations
+
+As we can see, throughput stays exactly the same and response times are quite similar except for the 99th percentile
+where we have a speedup of around 32%. I was expecting to have better throughput when doubling the amount of index servers,
+however this is not the case. The only thing that gets better is the response time at the 99th percentile.
+
+Thank you for reading :)
