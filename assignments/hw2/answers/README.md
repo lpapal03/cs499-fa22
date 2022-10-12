@@ -128,28 +128,28 @@ Command: <br/>
 Client threads = 1
 
 <img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case1_cpu.png" alt="Cpu util" title="Cpu util">
-<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case1_latency_throughput.png" alt="Cores per socket" title="Cores per socket">
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case1_latency_throughput.png" alt="Latency and throughput" title="Latency and throughput">
 
 ##### Case 2
 
 Client threads = 8
 
 <img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case2_cpu.png" alt="Cpu util" title="Cpu util">
-<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case2_latency_throughput.png" alt="Cores per socket" title="Cores per socket">
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case2_latency_throughput.png" alt="Latency and throughput" title="Latency and throughput">
 
 ##### Case 3
 
 Client threads = 64
 
 <img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case3_cpu.png" alt="Cpu util" title="Cpu util">
-<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case3_latency_throughput.png" alt="Cores per socket" title="Cores per socket">
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case3_latency_throughput.png" alt="Latency and throughput" title="Latency and throughput">
 
 ##### Case 4
 
 Client threads = 128
 
 <img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case4_cpu.png" alt="Cpu util" title="Cpu util">
-<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case4_latency_throughput.png" alt="Cores per socket" title="Cores per socket">
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_case4_latency_throughput.png" alt="Latency and throughput" title="Latency and throughput">
 
 ### Observations
 
@@ -158,3 +158,33 @@ throuhput is also incrfeasing lineraly and the tail latency is worsening maybe a
 This degradation in response times is caused by increased contentions of shared resources as the number of active cores increases.
 
 ### 2.2: Index Partitioning
+
+Run with:
+
+```console
+./client node1 8080 /local/websearch/ISPASS_PAPER_QUERIES_100K 1000 1 onlyHits.jsp 1 1 /tmp/out 1 2> /dev/null
+```
+
+##### Case 1: hosts-2-index
+
+[frontend]
+node1
+
+[index]
+node2
+node3
+
+<img src="https://github.com/lpapal03/cs499-fa22/blob/main/assignments/hw2/answers/images/part2_2_case1.png" alt="Latency and throughput" title="Latency and throughput">
+
+##### Case 1: hosts-2-index
+
+[frontend]
+node1
+
+[index]
+node2
+node3
+node4
+node5
+
+### Observations
