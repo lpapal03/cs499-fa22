@@ -115,6 +115,10 @@ func (s *Frontend) searchHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// hotel profiles
+<<<<<<< HEAD
+=======
+	// hotel profiles
+>>>>>>> abdbd1db487ef20f5f665b8f6e1b943accd9b142
 	profileResp, err := s.profileClient.GetProfiles(ctx, &profile.Request{
 	HotelIds: searchResp.HotelIds,
 	Locale:   locale,
@@ -122,7 +126,11 @@ func (s *Frontend) searchHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 	http.Error(w, err.Error(), http.StatusInternalServerError)
 	return
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> abdbd1db487ef20f5f665b8f6e1b943accd9b142
 
 	json.NewEncoder(w).Encode(geoJSONResponse(profileResp.Hotels))
 }

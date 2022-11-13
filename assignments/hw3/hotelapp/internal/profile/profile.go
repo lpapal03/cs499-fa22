@@ -80,4 +80,8 @@ func (s *Profile) GetProfiles(ctx context.Context, req *pb.Request) (*pb.Result,
 	res.Hotels = hotels
 
 	return res, nil
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> abdbd1db487ef20f5f665b8f6e1b943accd9b142
