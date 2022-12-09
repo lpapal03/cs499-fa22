@@ -1,0 +1,41 @@
+for service in frontend search profile rate geo jaeger; do docker service ps hotelapp_$service; done
+
+ID             NAME                  IMAGE                                                  NODE                                                DESIRED STATE   CURRENT STATE          ERROR     PORTS
+hj1uf4wcoiem   hotelapp_frontend.1   hvolos01/hotel_app_frontend_single_node_memdb:latest   node5.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Running 1 second ago             
+ID             NAME                IMAGE                                                NODE                                                DESIRED STATE   CURRENT STATE           ERROR     PORTS
+kpoknptazmw9   hotelapp_search.1   hvolos01/hotel_app_search_single_node_memdb:latest   node0.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Starting 1 second ago             
+ID             NAME                 IMAGE                                                 NODE                                                DESIRED STATE   CURRENT STATE             ERROR     PORTS
+15zdgmrpjh41   hotelapp_profile.1   hvolos01/hotel_app_profile_single_node_memdb:latest   node4.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Preparing 4 seconds ago             
+ID             NAME              IMAGE                                              NODE                                                DESIRED STATE   CURRENT STATE                     ERROR     PORTS
+oyt53yaczwzf   hotelapp_rate.1   hvolos01/hotel_app_rate_single_node_memdb:latest   node3.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Starting less than a second ago             
+ID             NAME             IMAGE                                             NODE                                                DESIRED STATE   CURRENT STATE           ERROR     PORTS
+sfcgqfeigc8o   hotelapp_geo.1   hvolos01/hotel_app_geo_single_node_memdb:latest   node1.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Starting 1 second ago             
+ID             NAME                IMAGE                             NODE                                                DESIRED STATE   CURRENT STATE           ERROR     PORTS
+qk2vz74p4t4q   hotelapp_jaeger.1   jaegertracing/all-in-one:latest   node2.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Starting 1 second ago   
+
+We then scaled profile 3 times:
+docker service scale hotelapp_profile=3
+hotelapp_profile scaled to 3
+overall progress: 3 out of 3 tasks 
+1/3: running   [==================================================>] 
+2/3: running   [==================================================>] 
+3/3: running   [==================================================>] 
+verify: Service converged
+
+So now we have:
+for service in frontend search profile rate geo jaeger; do docker service ps hotelapp_$service; done
+
+ID             NAME                  IMAGE                                                  NODE                                                DESIRED STATE   CURRENT STATE            ERROR     PORTS
+hj1uf4wcoiem   hotelapp_frontend.1   hvolos01/hotel_app_frontend_single_node_memdb:latest   node5.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Running 46 seconds ago             
+ID             NAME                IMAGE                                                NODE                                                DESIRED STATE   CURRENT STATE            ERROR     PORTS
+kpoknptazmw9   hotelapp_search.1   hvolos01/hotel_app_search_single_node_memdb:latest   node0.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Running 43 seconds ago             
+ID             NAME                 IMAGE                                                 NODE                                                DESIRED STATE   CURRENT STATE            ERROR     PORTS
+15zdgmrpjh41   hotelapp_profile.1   hvolos01/hotel_app_profile_single_node_memdb:latest   node4.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Running 9 seconds ago              
+wr4lpoqmgdh3   hotelapp_profile.2   hvolos01/hotel_app_profile_single_node_memdb:latest   node3.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Running 24 seconds ago             
+e3rjz015q4n5   hotelapp_profile.3   hvolos01/hotel_app_profile_single_node_memdb:latest   node2.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Running 24 seconds ago             
+ID             NAME              IMAGE                                              NODE                                                DESIRED STATE   CURRENT STATE            ERROR     PORTS
+oyt53yaczwzf   hotelapp_rate.1   hvolos01/hotel_app_rate_single_node_memdb:latest   node3.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Running 43 seconds ago             
+ID             NAME             IMAGE                                             NODE                                                DESIRED STATE   CURRENT STATE            ERROR     PORTS
+sfcgqfeigc8o   hotelapp_geo.1   hvolos01/hotel_app_geo_single_node_memdb:latest   node1.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Running 45 seconds ago             
+ID             NAME                IMAGE                             NODE                                                DESIRED STATE   CURRENT STATE            ERROR     PORTS
+qk2vz74p4t4q   hotelapp_jaeger.1   jaegertracing/all-in-one:latest   node2.homework4.ucy-cs499-dc-pg0.wisc.cloudlab.us   Running         Running 43 seconds ago  

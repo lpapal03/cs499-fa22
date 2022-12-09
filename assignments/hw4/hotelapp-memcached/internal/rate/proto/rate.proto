@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package rate;
+
+service Rate {
+  // GetRates returns rate codes for hotels for a given date range
+  rpc GetRates(Request) returns (Result);
+}
+
+message Request {
+  repeated string hotelIds = 1;
+  string inDate = 2;
+  string outDate = 3;
+}
+
+message Result {
+  repeated RatePlans ratePlans = 1;
+}
+
+message RatePlans {
+  string hotelId = 1;
+  string code = 2;
+  string inDate = 3;
+  string outDate = 4;
+  RoomType roomType = 5;
+}
+
+message RoomType {
+  double bookableRate = 1;
+  double totalRate = 2;
+  double totalRateInclusive = 3;
+  string code = 4;
+  string currency = 5;
+  string roomDescription = 6;
+}
+
+message Hotel {
+  string id = 1;
+  string name = 2;
+  string phoneNumber = 3;
+  string description = 4;
+  Address address = 5;
+  repeated Image images = 6;
+}
+
+message Address {
+  string streetNumber = 1;
+  string streetName = 2;
+  string city = 3;
+  string state = 4;
+  string country = 5;
+  string postalCode = 6;
+  float lat = 7;
+  float lon = 8;
+}
+
+message Image {
+  string url = 1;
+  bool default = 2;
+}

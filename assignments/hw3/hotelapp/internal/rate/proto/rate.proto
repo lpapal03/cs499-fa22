@@ -3,31 +3,60 @@ syntax = "proto3";
 package rate;
 
 service Rate {
-  rpc GetRates(Request) returns (Result);
+  rpc GetRates(RateRequest) returns (RateResult);
 }
 
-message Request {
-    repeated string hotelIds = 1;
-	string InDate = 2;
-	string OutDate = 3;
+
+message RateRequest {
+  repeated string hotelIds = 1;
+  string InDate = 2;
+  string OutDate = 3;
 }
 
-message Result {
-	repeated RatePlan RatePlans = 1;
+message RateResult {
+  repeated RatePlan RatePlans = 1;
 }
+
 
 message RatePlan {
-	string HotelId = 1;
-	string Code = 2;     
-	string InDate = 3;   
-	string OutDate = 4;  
-	RoomType RoomType = 5;
+  string HotelId = 1;
+  string Code = 2;
+  string InDate = 3;
+  string OutDate = 4;
+  RoomType RoomType = 5;
 }
 
+
 message RoomType {
-	double BookableRate = 1;   
-	string Code = 2;               
-	string RoomDescription = 3;    
-	double TotalRate = 4;          
-	double TotalRateInclusive = 5; 
+  double bookableRate = 1;
+  string code = 2;
+  string roomDescription = 3;
+  double totalRate = 4;
+  double totalRateInclusive = 5;
+}
+
+
+message Hotel {
+  string id = 1;
+  string name = 2;
+  string phoneNumber = 3;
+  string description = 4;
+  Address address = 5;
+  repeated Image images = 6;
+}
+
+message Address {
+  string streetNumber = 1;
+  string streetName = 2;
+  string city = 3;
+  string state = 4;
+  string country = 5;
+  string postalCode = 6;
+  float lat = 7;
+  float lon = 8;
+}
+
+message Image {
+  string url = 1;
+  bool default = 2;
 }

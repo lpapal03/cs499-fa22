@@ -52,18 +52,22 @@ func (s *Rate) Run() error {
 		),
 	}
 
+	// Create an instance of the gRPC server
 	srv := grpc.NewServer(opts...)
+
+	// Register our service implementation with the gRPC server
 	pb.RegisterRateServer(srv, s)
 
 	// Register reflection service on gRPC server.
 	reflection.Register(srv)
 
-	// listener
+	// Listen for client requests
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", s.port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
+	// Accept and serve incoming client requests 
 	log.Printf("Start Rate server. Addr: %s:%d\n", s.addr, s.port)
 	return srv.Serve(lis)
 }
@@ -73,8 +77,8 @@ func inTimeSpan(start, end, check time.Time) bool {
 }
 
 // GetRates gets rates for hotels for specific date range.
-func (s *Rate) GetRates(ctx context.Context, req *pb.Request) (*pb.Result, error) {
-	res := new(pb.Result)
+func (s *Rate) GetRates(ctx context.Context, req *pb.RateRequest) (*pb.RateResult, error) {
+	res := new(pb.RateResult)
 
 	ratePlans, err := s.dbsession.GetRates(req.HotelIds)
 	if err != nil {

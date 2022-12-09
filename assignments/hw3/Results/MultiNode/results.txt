@@ -1,0 +1,30 @@
+./wrk -t2 -c100 -d30s -R2000 -L -s ./scripts/hotel-reservation/mixed-workload_type_1.lua http://node0:8080
+
+ID             NAME                MODE         REPLICAS   IMAGE                                                  PORTS
+hfsysxgw9ubh   hotelapp_frontend   replicated   1/1        hvolos01/hotel_app_frontend_single_node_memdb:latest   *:8080->8080/tcp
+e1i2dd6o6e1u   hotelapp_geo        replicated   1/1        hvolos01/hotel_app_geo_single_node_memdb:latest        *:8083->8083/tcp
+829es8xog8ik   hotelapp_jaeger     replicated   1/1        jaegertracing/all-in-one:latest                        *:5778->5778/tcp, *:14268->14268/tcp, *:16686->16686/tcp, *:30004->14269/tcp, *:30005->14267/tcp, *:5775->5775/udp, *:6831-6832->6831-6832/udp
+9zxb8qzxwu19   hotelapp_profile    replicated   1/1        hvolos01/hotel_app_profile_single_node_memdb:latest    *:8081->8081/tcp
+qtx6ijex6xkx   hotelapp_rate       replicated   1/1        hvolos01/hotel_app_rate_single_node_memdb:latest       *:8084->8084/tcp
+eiibls2cwv51   hotelapp_search     replicated   1/1        hvolos01/hotel_app_search_single_node_memdb:latest     *:8082->8082/tcp
+
+(We named it hotelapp)
+
+Running 30s test @ http://node0:8080
+  2 threads and 100 connections
+  Thread calibration: mean lat.: 2.963ms, rate sampling interval: 10ms
+  Thread calibration: mean lat.: 2.885ms, rate sampling interval: 10ms
+  Thread Stats   Avg      Stdev     99%   +/- Stdev
+    Latency     2.90ms    1.99ms   6.64ms   48.83%
+    Req/Sec     1.05k   173.22     1.44k    78.30%
+#[Mean    =        2.899, StdDeviation   =        1.988]
+#[Max     =       10.448, Total count    =        39888]
+#[Buckets =           27, SubBuckets     =         2048]
+----------------------------------------------------------
+  59886 requests in 30.00s, 13.60MB read
+  Non-2xx or 3xx responses: 23905
+Requests/sec:   1996.33
+Transfer/sec:    464.35KB
+
+
+Nearby Takes ~ 2ms and GetProfiles ~ 115 ms

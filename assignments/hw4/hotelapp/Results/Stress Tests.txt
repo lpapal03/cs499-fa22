@@ -1,0 +1,88 @@
+We noticed that ../wrk2/scripts/hotel-reservation/mixed-workload_type_1.lua directory has the following code at the end:
+
+request = function()
+  cur_time = math.floor(socket.gettime())
+  local search_ratio      = 0.6
+  local recommend_ratio   = 0.39
+  local user_ratio        = 0.005
+  local reserve_ratio     = 0.005
+
+  local coin = math.random()
+  if coin < search_ratio then
+    return search_hotel(url)
+  elseif coin < search_ratio + recommend_ratio then
+    return recommend(url)
+  elseif coin < search_ratio + recommend_ratio + user_ratio then
+    return user_login(url)
+  else 
+    return reserve(url)
+  end
+
+So we changed it in order to have only 200 result codes (HTTP OK):
+
+request = function()
+--   cur_time = math.floor(socket.gettime())
+--   local search_ratio      = 0.6
+--   local recommend_ratio   = 0.39
+--   local user_ratio        = 0.005
+--   local reserve_ratio     = 0.005
+
+--   local coin = math.random()
+--   if coin < search_ratio then
+--     return search_hotel(url)
+--   elseif coin < search_ratio + recommend_ratio then
+--     return recommend(url)
+--   elseif coin < search_ratio + recommend_ratio + user_ratio then
+--     return user_login(url)
+--   else 
+--     return reserve(url)
+--   end
+    return search_hotel(url)
+end
+
+We commented out all the function code and we always return search_hotel(url), because we don't have the other services.
+
+We then ran ./wrk -t2 -c100 -d30s -R2000 -L -s ./scripts/hotel-reservation/mixed-workload_type_1.lua http://127.0.0.1:8080 in node0 (Manager):
+
+(For scaled)
+
+Running 30s test @ http://127.0.0.1:8080
+  2 threads and 100 connections
+  Thread calibration: mean lat.: 3.956ms, rate sampling interval: 10ms
+  Thread calibration: mean lat.: 3.970ms, rate sampling interval: 10ms
+  Thread Stats   Avg      Stdev     99%   +/- Stdev
+    Latency     3.91ms  783.75us   6.40ms   75.67%
+    Req/Sec     1.05k   147.83     1.44k    63.05%
+#[Mean    =        3.908, StdDeviation   =        0.784]
+#[Max     =       12.816, Total count    =        39899]
+#[Buckets =           27, SubBuckets     =         2048]
+----------------------------------------------------------
+  59889 requests in 30.00s, 15.87MB read
+Requests/sec:   1996.43
+Transfer/sec:    541.61KB
+
+The second time we ran it, we got completely different results (except req/sec and transfer/sec):
+Running 30s test @ http://127.0.0.1:8080
+  2 threads and 100 connections
+  Thread calibration: mean lat.: 10.918ms, rate sampling interval: 32ms
+  Thread calibration: mean lat.: 12.299ms, rate sampling interval: 32ms
+  Thread Stats   Avg      Stdev     99%   +/- Stdev
+    Latency    11.39ms    3.50ms  20.08ms   68.14%
+    Req/Sec     1.02k   602.00     1.61k    76.77%
+#[Mean    =       11.395, StdDeviation   =        3.496]
+#[Max     =       25.840, Total count    =        39900]
+#[Buckets =           27, SubBuckets     =         2048]
+----------------------------------------------------------
+  57912 requests in 30.01s, 15.35MB read
+Requests/sec:   1930.02
+Transfer/sec:    523.69KB
+
+So we decided to run it 25 times and get the average:
+for i in {1..25}; do ./wrk -t2 -c100 -d30s -R2000 -L -s ./scripts/hotel-reservation/mixed-workload_type_1.lua http://127.0.0.1:8080 | grep Latency >> lat_results.txt; done
+
+We did these processes both for scaled profile service and not
+
+
+
+For scaled, the Search/Nearby gRPC was the bottleneck with average time ~59ms and GetProfiles had an average time ~57ms. 
+For not scaled, the Search/Nearby gRPC was the bottleneck with average time ~148ms and GetProfiles had an average time ~145ms. 
